@@ -1,0 +1,45 @@
+<%- include('../../partials/header.html') %>
+
+<link rel="stylesheet" href="/public/css/partygames/sequentialboxes.css">
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+<!-- Hero End -->
+
+<div class="container my-5">
+    <div id="info-container">
+        <div class="info-separator">
+            <div>
+                <div class="info-box" id="start-game">
+                    Start Game
+                </div>
+            </div>
+            <div>
+                <div class="info-box">
+                    <i class="fa-solid fa-box"></i> <span id="score-game">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-container" id="gameBoard">
+        <!--<div id="click-overlay"></div>-->
+        
+        <div class="grid-box" data-index="0"></div>
+        <div class="grid-box" data-index="1"></div>
+        <div class="grid-box" data-index="2"></div>
+
+        <div class="grid-box" data-index="3"></div>
+        <div class="grid-box" data-index="4"></div>
+        <div class="grid-box" data-index="5"></div>
+
+        <div class="grid-box" data-index="6"></div>
+        <div class="grid-box" data-index="7"></div>
+        <div class="grid-box" data-index="8"></div>
+    </div>
+</div>
+
+<script src="/public/js/partygames/sequentialboxes.js"></script>
+
+<%- include('../../partials/footer.html') %>

@@ -1,0 +1,68 @@
+<%- include('partials/header.html') %>
+
+<div class="container container" data-layout="container">
+    <script>
+      var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+      if (isFluid) {
+        var container = document.querySelector('[data-layout]');
+        container.classList.remove('container');
+        container.classList.add('container-fluid');
+      }
+    </script>
+    
+    <div class="content">
+      <div class="card">
+        <div class="card-header bg-body-tertiary">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <h5 class="mb-0" id="followers">Developers <span class="d-none d-sm-inline-block">(<%= developers.length %>)</span></h5>
+              </div>
+              <div class="col-3">
+                <form id="searchForm">
+                  <div class="row g-0">
+                    <div class="col">
+                      <input id="searchInput" class="form-control form-control-sm" type="text" placeholder="Search...">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        <div class="card-body bg-body-tertiary px-3 py-0 pt-2 pb-3">
+          <div id="searchResults" class="row g-0 text-center fs-10">
+            <% developers.forEach(function(user) { %>
+              <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-1">
+                <div class="bg-white dark__bg-1100 p-3 h-100">
+                  <a href="/profile/<%= user.username %>">
+                    <img class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm" src="<%= (user.profileIcon) ? user.profileIcon : "/public/assets/selfdata/img/DefaultProfileIcon.png"%>" alt="" width="100">
+                  </a>
+                  <h6 class="mb-1"><a href="/profile/<%= user.username %>"><%= user.name %></a></h6>
+                  <p class="fs-11 mb-1"><a class="text-700" href="#!"><%= user.company %></a></p>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<%- include('partials/footer.html') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#searchInput').on('input', function() {
+      var searchText = $(this).val().toLowerCase();
+      $('#searchResults').children().each(function() {
+        var userName = $(this).find('h6').text().toLowerCase();
+        var company = $(this).find('.text-700').text().toLowerCase();
+        if (userName.includes(searchText) || company.includes(searchText)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+  });
+</script>

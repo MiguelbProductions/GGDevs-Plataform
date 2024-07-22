@@ -1,0 +1,48 @@
+<%- include('partials/header.html') %>
+<div class="container mt-5">
+    <h1>Support</h1>
+    <% if (message != "") { %>
+        <div class="alert alert-<%= messageType %> mt-3">
+            <%= message %>
+        </div>
+    <% } %>
+    <form class="needs-validation" novalidate action="/submit-support" method="POST">
+        <div class="mb-3">
+            <label for="project" class="form-label">Select Game for Ticket</label>
+            <% 
+                let nameCount = {}; 
+                projects.forEach(project => {
+                    let name = project["project-name"];
+                    if (nameCount[name]) {
+                        nameCount[name] += 1;
+                    } else {
+                        nameCount[name] = 1;
+                    }
+                });
+            %>
+            <select class="form-control" id="project" name="project" required>
+                <option value="">Choose a Game</option>
+                <% projects.forEach(function(project) { %>
+                    <% if (project.ownerId.toString() !== user._id.toString()) { %>
+                        <option value="<%= project._id %>" <% if (projectMarked && projectMarked._id.toString() === project._id.toString()) { %>selected<% } %>>
+                            <%= project["project-name"] %><% if (nameCount[project["project-name"]] > 1) { %> (<%= project['_id'] %>)<% } %>
+                        </option>
+                    <% } %>
+                <% }); %>                
+            </select>
+            <div class="invalid-feedback">Please select a project.</div>
+        </div>
+        <div class="mb-1">
+            <label for="description" class="form-label">Title (Max. 80 Characters)</label>
+            <input class="form-control" type="text" name="title" id="title" maxlength="80" required>
+            <div class="invalid-feedback">Please provide a title of your issue or question.</div>
+        </div>
+        <div class="mb-1">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="tinymce d-none" data-tinymce="data-tinymce" class="form-control" id="description" name="description" required></textarea>
+            <div class="invalid-feedback">Please provide a description of your issue or question.</div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4 mb-5">Submit</button>
+    </form>
+</div>
+<%- include('partials/footer.html') %>

@@ -1,0 +1,180 @@
+<%- include('../partials/header.html') %>
+<form class="needs-validation" novalidate="novalidate" action="/update-profile" method="POST" enctype="multipart/form-data">
+    <div class="container content">            
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row flex-between-center">
+            <div class="col-md">
+              <h5 class="mb-2 mb-md-0">Submit/Change your Profile</h5>
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>   
+      <div class="card mb-3">
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-lg-6 mb-4">
+                    <%
+                      var fullPath = pageUser.profileIcon;
+                      var lastIndex = fullPath.lastIndexOf('\\');
+                      var path = fullPath.substring(0, lastIndex);
+                      var filename = fullPath.substring(lastIndex + 1);
+                    %>
+                    <div class="row" data-dropzone="data-dropzone" id="profileIcon" data-options='{"maxFiles":1,"data":[{"name":"<%= (filename != "default-avatar.png") ? filename : 'avatar.png' %>","url":"\\<%= (filename != "default-avatar.png") ? path : '/public/assets/img/team' %>"}]}'>
+                      <div class="fallback">
+                        <input type="file" name="file"/>
+                      </div>
+                      <div class="col-md-auto">
+                        <div class="dz-preview dz-preview-single">
+                          <div class="dz-preview-cover d-flex align-items-center justify-content-center mb-3 mb-md-0">
+                            <div class="avatar avatar-4xl">
+                              <img class="rounded-circle" src="/public/assets/img/team/avatar.png" alt="..." data-dz-thumbnail="data-dz-thumbnail" />
+                            </div>
+                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="dz-message dropzone-area px-2 py-3" data-dz-message="data-dz-message">
+                          <div class="text-center"><img class="me-2" src="/public/assets/img/icons/cloud-upload.svg" width="25" alt="" />Update your profile picture
+                            <p class="mb-0 fs-10 text-400">Upload a 300x300 jpg image with <br />a maximum size of 400KB</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="hidden" name="userId" value="<%= pageUser._id %>">
+                      <div class="mb-3">
+                        <input type="text" class="form-control mb-2" name="name" value="<%= pageUser.name %>" placeholder="Your Name" required>
+                        <div class="invalid-feedback">You must add your name</div>
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" class="form-control mb-2" name="title" value="" placeholder="Your title" required>
+                        <div class="invalid-feedback">You must add your title</div>
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" class="form-control mb-2" name="location" value="" placeholder="Your location" required>
+                        <div class="invalid-feedback">You must add your location</div>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Additional Sections for Editable Fields -->      
+      <div class="row g-0">
+        <div class="col-lg-8 pe-lg-2">
+          <div class="card mb-3">
+            <div class="card-header bg-body-tertiary">
+              <h5 class="mb-0">About you</h5>
+            </div>
+            <div class="card-body text-justify">
+              <textarea class="tinymce d-none" data-tinymce="data-tinymce" name="content"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 ps-lg-2">
+          <div class="sticky-sidebar">                    
+            <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                    <h5 class="mb-0">Experience</h5>
+                </div>
+                <div class="card-body" id="experience-container">
+                    <!-- Container for dynamic experience fields -->
+                </div>
+                <button class="btn btn-primary" type="button" id="addExperience">Add Experience</button>
+            </div>
+            
+            <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                    <h5 class="mb-0">Education</h5>
+                </div>
+                <div class="card-body" id="education-container">
+                    <!-- Container for dynamic education fields -->
+                </div>
+                <button class="btn btn-primary" type="button" id="addEducation">Add Education</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+<script>
+  $(document).ready(function() {
+      var ProfileIconDropzone = Dropzone.forElement("#profileIcon");
+      var finalData = {};
+      var files = [];
+
+      ProfileIconDropzone.options.url = "/uploadIMG";
+      ProfileIconDropzone.options.paramName = "file";
+      ProfileIconDropzone.options.autoProcessQueue = true;
+      ProfileIconDropzone.options.acceptedFiles = 'image/*';
+
+      ProfileIconDropzone.on("success", function (file, response) {
+          files.push(response[0].path);
+      });
+
+      $('form.needs-validation').submit(function(e) {
+          e.preventDefault();
+
+          var formData = $(this).serializeArray().reduce(function(obj, item) {
+              obj[item.name] = item.value;
+              return obj;
+          }, {});
+
+          files.forEach((image) => {
+              formData['profileIcon'] = image;
+          });
+
+          $.ajax({
+              url: $(this).attr('action'),
+              type: 'POST',
+              data: formData,
+              success: function(response) {
+                  console.log('Profile updated successfully:', response);
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error updating profile:', error);
+              }
+          });
+      });
+
+      $('#addExperience').on('click', function() {
+          var newField = `
+              <div class="mb-4">
+                  <input type="text" class="form-control mb-2" name="role[]" placeholder="Role" required>
+                  <input type="text" class="form-control mb-2" name="company[]" placeholder="Company Name" required>
+                  <input type="text" class="form-control mb-2" name="duration[]" placeholder="Duration (e.g., Jan 2018 - Present)" required>
+                  <button class="btn btn-danger remove-field" type="button">Remove</button>
+              </div>
+          `;
+          $('#experience-container').append(newField);
+      });
+
+      $('#addEducation').on('click', function() {
+          var newField = `
+              <div class="mb-4">
+                  <input type="text" class="form-control mb-2" name="school[]" placeholder="School Name" required>
+                  <input type="text" class="form-control mb-2" name="degree[]" placeholder="Degree" required>
+                  <input type="text" class="form-control mb-2" name="schoolDuration[]" placeholder="Duration (e.g., 2014 - 2018)" required>
+                  <input type="text" class="form-control mb-2" name="schoolLocation[]" placeholder="Location" required>
+                  <button class="btn btn-danger remove-field" type="button">Remove</button>
+              </div>
+          `;
+          $('#education-container').append(newField);
+      });
+
+      $(document).on('click', '.remove-field', function() {
+          $(this).parent().remove();
+      });
+});
+
+</script>
+
+<%- include('../partials/footer.html') %>

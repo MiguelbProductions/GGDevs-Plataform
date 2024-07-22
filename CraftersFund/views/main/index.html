@@ -1,0 +1,231 @@
+<%- include('partials/header.html') %>
+<style>
+  .main-place{
+    position: relative;
+  }
+  .main-place::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("/public/assets/selfdata/img/ThumbImage.png");
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position: right;
+  z-index: -10000;
+  filter: brightness(60%);
+}
+
+</style>
+      <div>
+        <div class="row">
+            <div class="main-place col col-lg-12 col-md-12 col-sm-12 px-8 ps-6 pe-md-8 pt-8 pb-8">
+                <h5>
+                  <span class="badge rounded-pill badge-subtle-primary mb-3">Welcome to Crafters Fund.</span>
+                </h5>
+                <div class="row">
+                  <div class="col-lg-9 col-md-8 col-sm-7">
+                    <h1 class="fw-light" style="font-size: 4vw !important;">
+                        Experience the new era of empowering indie game developers with
+                        <span class="typed-text fw-bold" data-typed-text='["Innovation.", "Community.", "Opportunity."]'></span>
+                    </h1>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+      .colored-box {
+          padding: 2em 3em;
+          color: white;
+          border-radius: 8px;
+      }
+      .blue-box {
+          background-color: #0A73C0;
+      }
+      .green-box {
+          background-color: #09941e;
+      }
+      
+      .agent-box {
+            display: inline-flex;
+            width: auto !important;
+            margin: 1.5em 0;
+        }
+
+        .dev-link {
+          display: inline-flex;
+          width: auto;
+        }
+        .agent-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-size: cover;
+        }
+        .agent-row {
+            overflow-x: auto; 
+            white-space: nowrap;
+        }
+        .agent-row .agent-box {
+            display: inline-flex;
+            width: 28%;
+            flex: 0 0 auto;
+        }
+    </style>
+    
+    <div class="py-5 pt-6 pb-6">
+      <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+              <h5 class="mb-3">
+                <span class="badge rounded-pill bg-primary">Agents Hub</span>
+              </h5>
+              <h2>See Our New Games And Developers Hub</h2>
+              <p>Explore our latest indie game releases and connect with talented developers from around the world. Stay updated with new projects, developer profiles, and exciting opportunities in the gaming industry.</p>
+          </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+          <div class="col-md-5 colored-box blue-box mx-4 align-items-center">
+              <h3>See our games around the world:</h3>
+              <h6>Discover indie games created by developers worldwide</h6>
+              <a href="/Projects-Grid?sort=newest"><button class="btn btn-light mt-2">View New Games</button></a>
+          </div>
+          <div class="col-md-5 colored-box green-box mx-4">
+              <h5>Developer Hub:</h5>
+              <h3>Showcase your game with us</h3>
+              <% if (user && user.role == "Entrepreneur") { %>
+                <a href="/Add-Project"><button class="btn btn-dark mt-2">Get Started</button></a>
+              <% } else { %>
+                <a href="/Register"><button class="btn btn-dark mt-2">Register</button></a>
+              <% } %>
+              
+          </div>
+      </div>
+    </div>
+    <div class="container my-5 mb-md-3">
+      <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+              <h5 class="mb-3">
+                  <span class="badge rounded-pill bg-primary">Indie Hub</span>
+              </h5>
+              <h2>Meet some of our Indie developers</h2>
+              <p>We have a wide range of developers who need you, if you could help in even the slightest way it would be incredible.</p>
+          </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <% devs.forEach(function(dev) { %>
+          <a class="dev-link page-link" href="/Profile/<%= dev.username %>">
+            <div class="agent-box">
+                <img src="/<%= (dev.profileIcon) ? dev.profileIcon : "public/assets/selfdata/img/DefaultProfileIcon.png" %>" class="agent-photo" alt="">
+                <div>
+                    <h4><%= dev.name %></h4>
+                    <p><%= dev.username %></p>
+                </div>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+  </div>
+
+  <div class="my-5 pt-4 pb-5 mx-4 mt-2">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <h5 class="mb-3">
+            <span class="badge rounded-pill bg-primary">Featured Games</span>
+          </h5>
+          <h2 class="mb-4">Featured Indie Games</h2>
+        </div>
+    </div>
+
+    <div class="row g-0">
+      <% 
+        function formatValue(number) {
+              if (number >= 1000000) {
+                  return (number / 1000000).toFixed(1) + ' M';
+              } else if (number >= 1000) {
+                  return (number / 1000).toFixed(1) + ' K';
+              }
+              return number.toString();
+          }
+      %>
+      <% projects.forEach(function(project) { %>
+        <div class="row my-2">
+          <div class="col-sm-5 col-md-4 d-flex align-items-center">
+            <div class="position-relative h-sm-100 overflow-hidden w-100" style="height: 150px !important;">
+              <a class="d-block h-100 d-flex align-items-center w-100" href="/project/<%= project._id %>">
+                <% if (project.ImagesOfPlace && project.ImagesOfPlace.length > 0) { %>
+                  <% if (Array.isArray(project.ImagesOfPlace)){ %>
+                    <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered" src="/<%= project.ImagesOfPlace[0] %>" alt="<%= project['project-name'] %>"/>
+                  <% } else { %>
+                    <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered" src="/<%= project.ImagesOfPlace %>" alt="Default Image"/>
+                  <% } %>
+                <% } else { %>
+                  <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered" src="/public\assets\img\projects\ImageNotAvaliable.png">
+                <% } %>
+              </a>
+              <div class="badge rounded-pill bg-success position-absolute top-0 end-0 me-2 mt-2 fs-11 z-2">New</div>
+            </div>
+          </div>
+          <div class="col-sm-7 col-md-8">
+            <div class="row">
+              <div class="col-lg-8">
+                <h5 class="mt-3 mt-sm-0"><a class="text-1100 fs-9 fs-lg-8" href="/project/<%= project._id %>"><%= project['project-name'] %></a></h5>
+                <p class="fs-10 mb-2 mb-md-3"><a class="text-500" href="#">
+                  <%= project['project-tag'].join(' & ') %>
+                </a></p>
+                <ul class="list-unstyled d-none d-lg-block">
+                  <li>
+                    <span class="fas fa-circle" data-fa-transform="shrink-12"></span>
+                    <span style="font-size: 0.85em;"> Required Funding: 
+                      $<%= formatValue(project['project-totalbudget'] * project['project-fundingpercentage'] / 100) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                    </span>
+                  </li>
+                  <li>
+                </ul>
+              </div>
+              <div class="col-lg-4 d-flex justify-content-between flex-column">
+                <div>
+                  <h4 class="fs-8 fs-md-7 text-warning mb-0">$<%= formatValue(project['project-totalbudget'])  %></h4>
+                  <!--
+                  <div class="mb-2 mt-3"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(8)</span></div>
+                  -->
+                </div>
+                <div class="mt-2">
+                  <form method="POST" action="/toggle-wishlist" style="width: 100%;">
+                      <input type="hidden" name="projectId" value="<%= project._id %>">
+                      <button class="btn btn-sm btn-outline-danger border border-300" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"  style="width: 100%;">
+                          <% if (user) { %>
+                            <span class="<%= project.wishlist && project.wishlist.includes(user._id.toString()) ? 'fas' : 'far' %> fa-heart me-1"></span>
+                          <% } else { %>
+                            <span class="far fa-heart me-1"></span>
+                          <% } %>
+                          <span class="ms-2 d-none d-md-inline-block">Favourite</span>
+                      </a>
+                      </button>
+                  </form>     
+                      
+                  <a class="btn btn-sm btn-primary d-lg-block mt-lg-2" href="#">
+                      <span class="fas fa-hand-holding-usd"></span>
+                      <span class="ms-2 d-none d-md-inline-block">Invest Now</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+</div>
+      
+    </main>
+
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+<%- include('partials/footer.html') %>
+
+

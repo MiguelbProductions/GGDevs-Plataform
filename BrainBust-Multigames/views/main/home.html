@@ -1,0 +1,466 @@
+<%- include('../partials/header.html') %>  
+
+<script src="/public/js/home.js"></script>
+
+    <!-- Hero Start -->
+    <div class="container-fluid pt-5 bg-primary hero-header mb-5">
+        <div class="container pt-5">
+            <div class="row g-5 pt-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">Brain.Burst</div>
+                    <h1 class="display-5 text-white mb-4 animated slideInRight">Programming Challenges for Curious Minds</h1>
+                    <p class="text-white mb-4 animated slideInRight">Explore, learn, and have fun with our selection of programming minigames. Awaken the coder within you!</p>
+
+                    <div style="display: flex; justify-content: center;">
+                        <a href="/minigames/menu" class="btn btn-dark py-sm-3 px-sm-4 me-4 rounded-pill animated slideInRight"><i class="fa-solid fa-gamepad mx-1"></i> Open Minigames in browser</a>
+                    </div>
+                    <p class="text-white mt-3 mb-3 animated slideInRight" style="font-size: 1.4em;font-weight:  bold;text-align: center;">OR</p>
+                    <form method="get" action="/public/BrainBurst-win32-x64.rar" style="display: flex; justify-content: center;">
+                        <button type="submit" class="btn btn-light py-sm-3 px-sm-3 rounded-pill me-3 animated slideInRight">
+                            <i class="fa-solid fa-lg fa-arrow-down-to-line mx-1"></i> Download App for Windows
+                        </button>
+                    </form>
+                </div>                
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="../public/img/hero-img.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(20, 24, 62, 0.7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn btn-square bg-white btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-light p-3"
+                            placeholder="Type search keyword">
+                        <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="AboutUs">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="about-img">
+                        <img class="img-fluid" src="../public/img/about-img.jpg">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">About Us</div>
+                    <h1 class="mb-4">Revolutionizing Programming Education</h1>
+                    <p class="mb-4">At Brain Burst, we're driven by a passion for education, innovation, and gaming. Our mission is to make learning programming accessible, engaging, and fun for everyone. With a diverse team of educators, developers, and game designers, we create interactive minigames that challenge the mind and inspire creativity. Join us on a journey to unlock your potential and explore the endless possibilities of coding.</p>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Personalized Learning Paths</h6>
+                            <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Engaging Minigames</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Community Support</h6>
+                            <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Innovative Teaching</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-4">
+                        <!-- <a class="btn btn-primary rounded-pill px-4 me-3" href="">Read More</a> -->
+                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Service Start -->
+    <div class="container-fluid bg-light mt-5 py-5" id="OurServices">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Our Services</div>
+                    <h1 class="mb-4">Our Excellent AI Solutions for Your Business</h1>
+                    <p class="mb-4">At Brain Burst, we're dedicated to revolutionizing programming education by providing an immersive and interactive learning experience. Our platform is designed to cater to both beginners and seasoned coders by offering a range of services that promote active learning, creativity, and problem-solving skills. Whether you're looking to get started with programming or aiming to sharpen your skills, Brain Burst is your go-to destination for all things coding.</p>
+                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                                        <div class="service-icon btn-square">
+                                            <i class="fa fa-robot fa-2x"></i>
+                                        </div>
+                                        <h5 class="mb-3">Interactive Programming Challenges</h5>
+                                        <p>Dive into the world of coding with challenges that are as entertaining as they are educational.</p>
+                                        <!-- <a class="btn px-3 mt-auto mx-auto" href="">Read More</a> -->
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                                        <div class="service-icon btn-square">
+                                            <i class="fa fa-power-off fa-2x"></i>
+                                        </div>
+                                        <h5 class="mb-3">Customizable Learning Journeys</h5>
+                                        <p>Tailor your learning experience to suit your personal goals and pace.</p>
+                                        <!-- <a class="btn px-3 mt-auto mx-auto" href="">Read More</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pt-md-4">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                                        <div class="service-icon btn-square">
+                                            <i class="fa fa-graduation-cap fa-2x"></i>
+                                        </div>
+                                        <h5 class="mb-3">Coding Challenges and Competitions</h5>
+                                        <p>Test your skills, challenge your peers, and win exciting prizes.</p>
+                                        <!-- <a class="btn px-3 mt-auto mx-auto" href="">Read More</a> -->
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.7s">
+                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                                        <div class="service-icon btn-square">
+                                            <i class="fa fa-brain fa-2x"></i>
+                                        </div>
+                                        <h5 class="mb-3">Supportive Coding Community</h5>
+                                        <p>Join a vibrant community of learners and experts ready to share knowledge, offer support, and inspire.</p>
+                                        <!-- <a class="btn px-3 mt-auto mx-auto" href="">Read More</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+    <!-- Feature Start -->
+    <div class="container-fluid bg-primary feature pt-5" id="WhychooseUs">
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-6 align-self-center mb-md-5 pb-md-5 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Why Choose Us</div>
+                    <h1 class="text-white mb-4">Why choose Brain Burst to study?</h1>
+                    <p class="text-light mb-4">At Brain Burst, we believe that programming education should be accessible, engaging, and tailored to the challenges of the 21st century. Our commitment is to continuous innovation and delivering a learning experience that not only teaches but also inspires and empowers our users. Here are some reasons why we are the right choice for your programming journey:</p>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>Our interactive and gamified teaching techniques make learning programming not just effective, but also engaging and fun.</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>Our curriculum is constantly updated to keep pace with the latest trends and technologies in the programming world.</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>Beyond courses, our platform is about building connections, offering a space for collaboration, sharing insights, and growing together with fellow coding enthusiasts.</span>
+                    </div>
+                    <div class="row g-4 pt-3">
+                        <div class="col-sm-6">
+                            <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
+                                <i class="fa fa-users fa-3x text-white"></i>
+                                <div class="ms-3">
+                                    <h2 class="text-white mb-0" data-toggle="counter-up">98%</h2>
+                                    <p class="text-white mb-0">Happy Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
+                                <i class="fa fa-check fa-3x text-white"></i>
+                                <div class="ms-3">
+                                    <h2 class="text-white mb-0" data-toggle="counter-up">+100</h2>
+                                    <p class="text-white mb-0">Project for Complete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-md-end wow fadeIn" data-wow-delay="0.5s">
+                    <img class="img-fluid" src="../public/img/feature.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+     
+    <!-- Case Start -->
+    <!--
+    <div class="container-fluid bg-light py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Case Study</div>
+                <h1 class="mb-4">Explore Our Recent AI Case Studies</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="../public/img/project-1.jpg" alt="">
+                        <a class="case-overlay text-decoration-none" href="">
+                            <small>Robotic Automation</small>
+                            <h5 class="lh-base text-white mb-3">Lorem elitr magna stet eirmod labore amet labore clita
+                            </h5>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="../public/img/project-2.jpg" alt="">
+                        <a class="case-overlay text-decoration-none" href="">
+                            <small>Machine learning</small>
+                            <h5 class="lh-base text-white mb-3">Lorem elitr magna stet eirmod labore amet labore clita
+                            </h5>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="../public/img/project-3.jpg" alt="">
+                        <a class="case-overlay text-decoration-none" href="">
+                            <small>Predictive Analysis</small>
+                            <h5 class="lh-base text-white mb-3">Lorem elitr magna stet eirmod labore amet labore clita
+                            </h5>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <!-- Case End -->
+
+
+    <!-- FAQs Start -->
+    <div class="container-fluid pt-5" id="FAQ">
+        <div class="container py-5">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Popular FAQs</div>
+                <h1 class="mb-5">Frequently Asked Questions</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="accordion" id="accordionFAQ1">
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.1s">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    What teaching methods are used at Brain Burst?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionFAQ1">
+                                <div class="accordion-body">
+                                    At Brain Burst, we utilize innovative teaching methods that include interactive and gamified techniques. These approaches make learning programming languages not just effective but also engaging and fun.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.2s">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How does Brain Burst keep its content up to date?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionFAQ1">
+                                <div class="accordion-body">
+                                    Our content is constantly reviewed and updated to ensure it aligns with the latest trends and technologies in the programming world. This includes incorporating new programming languages and frameworks as they become relevant in the industry.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.3s">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    What kind of community can I expect to find at Brain Burst?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionFAQ1">
+                                <div class="accordion-body">
+                                    Our platform goes beyond programming languages; it's about building a supportive community. We offer a space for collaboration, where you can share insights and grow together with other coding enthusiasts. It's a place for learning, questioning, and contributing.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="accordion" id="accordionFAQ2">
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.4s">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    Do I need prior programming experience to start with Brain Burst?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionFAQ1">
+                                <div class="accordion-body">
+                                    No, Brain Burst offers resources and learning paths for all levels, from absolute beginners to experienced programmers. Our teaching techniques are designed to facilitate learning regardless of your previous experience level.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.5s">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Are the programming languages taught at Brain Burst aligned with market demands?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#accordionFAQ2">
+                                <div class="accordion-body">
+                                    Yes, we focus on teaching the most relevant and in-demand programming languages and technologies in today's job market, ensuring our users gain up-to-date and applicable skills.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item wow fadeIn" data-wow-delay="0.6s">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    How can I interact with the community at Brain Burst?
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                data-bs-parent="#accordionFAQ2">
+                                <div class="accordion-body">
+                                    You can engage with the community through discussion forums, study groups, live coding events, and programming competitions. These platforms provide rich opportunities to learn from others, share knowledge, and work on collaborative projects.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs Start -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid bg-light py-5" id="OurTeam">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Our Team</div>
+                    <h1 class="mb-4">Meet our company's CEO</h1>
+                    <p class="mb-4">Adjacent to us is the visionary CEO of Brain Burst, who conceived the platform with a passion for empowering individuals eager to embark on or advance their journey in the programming world. This leader's innovative approach aims to democratize access to programming education, ensuring that learners of all levels have the tools and support they need to succeed.</p>
+                    <!--<a class="btn btn-primary rounded-pill px-4" href="">Read More</a>-->
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="../public/img/icons/CEO.png" alt="">
+                                        <h5 class="mb-0">Miguel Brandão</h5>
+                                        <small>Founder & CEO</small>
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="../public/img/team-2.jpg" alt="">
+                                        <h5 class="mb-0">Adam Crew</h5>
+                                        <small>Executive Manager</small>
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pt-md-4">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="../public/img/team-3.jpg" alt="">
+                                        <h5 class="mb-0">Kate Winslet</h5>
+                                        <small>Co Founder</small>
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.7s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="../public/img/team-4.jpg" alt="">
+                                        <h5 class="mb-0">Cody Gardner</h5>
+                                        <small>Project Manager</small>
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-square btn-primary m-1" href=""><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+<%- include('../partials/footer.html') %>   

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Brain Burst | <%= currentPage.charAt(0).toUpperCase() + currentPage.slice(1).toLowerCase() %></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/img/icons/Logo.png" type="image/x-icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/public/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/public/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                <a href="/minigames/menu" class="navbar-brand">
+                    <div class="header-titles">
+                        <h1 class="text-white d-inline-block">Brain<span class="text-dark">.</span>Burst</h1>
+                        <%= console.log(pagesession) %>
+                        <h2 class="text-white d-inline-block ms-3"><%- (pagesession && (pagesession == "Programming" || pagesession == "programming")) ? "DevZone" : (pagesession && pagesession == "Party Games") ? "<div class='party-area'><span>P</span><span>a</span><span>r</span><span>t</span><span>y</span><span>&nbsp;</span><span>A</span><span>r</span><span>e</span><span>a</span></div>" : "" %></h2>
+                    </div>
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <% if (pagesession && (pagesession == "Programming" || pagesession == "programming")) { %>
+                            <a href="/minigames/programming/codemaster/problems" class="nav-item nav-link"><i class="fa-solid fa-code mx-2"></i>Code Master</a>
+                            <a href="/minigames/programming/codecherif" class="nav-item nav-link"><i class="fa-regular fa-bug mx-2"></i>Code Sheriff</a>
+                            <a href="#" class="nav-item nav-link">Comming Soon...</a>
+                        <% } else if (pagesession && pagesession == "Party Games") { %>
+                            <a href="/minigames/party/sequentialboxes" class="nav-item nav-link">Sequential Boxes</a>
+                            <a href="/minigames/party/sudoku" class="nav-item nav-link">Sudoku</a>
+                            <a href="/minigames/party/wordle" class="nav-item nav-link">Wordle</a>
+                            <a href="#" class="nav-item nav-link">Comming Soon...</a>
+                        <% } else { %>
+                            <a href="/" class="nav-item nav-link">Home</a>
+                            <a href="/testimonial" class="nav-item nav-link">Testimonial</a>
+                            <a href="/contact" class="nav-item nav-link">Contact</a>
+                        <% } %>
+                        <% if (!user && pagesession) { %>
+                            <a href="/auth/login" class="nav-item nav-link ms-4">Login</a>
+                        <% } else if (pagesession) { %>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link d-flex align-items-center" data-bs-toggle="dropdown">
+                                    <img src="<%= user.Image %>" alt="Profile" class="rounded-circle me-2" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; ">
+                                    <%= user.Name %>
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </a>
+                                <div class="dropdown-menu bg-light mt-2">
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Main</a>
+                                        <ul class="dropdown-menu mainmenu">
+                                            <li><a href="#" class="dropdown-item">Home</a></li>
+                                            <li><a href="#" class="dropdown-item">Testimonial</a></li>
+                                            <li><a href="#" class="dropdown-item">Contact</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Minigames</a>
+                                        <ul class="dropdown-menu mainmenu">
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">Dev Games</a>
+                                                <ul class="dropdown-menu mingames-menu">
+                                                    <li><a href="/minigames/programming/codemaster/problems" class="dropdown-item">Code Master</a></li>
+                                                    <li><a href="/minigames/programming/codecherif" class="dropdown-item">Code Sheriff</a></li>
+                                                    <li><a href="#" class="dropdown-item">Coming Soon...</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">Party Games</a>
+                                                <ul class="dropdown-menu mingames-menu">
+                                                    <li><a href="#" class="dropdown-item">Sequential Boxes</a></li>
+                                                    <li><a href="#" class="dropdown-item">Sudoku</a></li>
+                                                    <li><a href="#" class="dropdown-item">Wordle</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">Daily Games</a>
+                                                <ul class="dropdown-menu mingames-menu">
+                                                    <li><a href="#" class="dropdown-item">2048</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <a href="/auth/logout" class="dropdown-item logout">Log Out <i class="fa-solid fa-right-from-bracket ms-2"></i></a>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script src="/public/externalpackages/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            var currentPage = "<%= currentPage %>".toLowerCase()
+            $('.navbar-nav .nav-link').each(function(){
+                var linkPage = $(this).text().toLowerCase()    
+                if(linkPage == currentPage) {
+                    $(this).addClass('active')
+                } else {
+                    $(this).removeClass('active')
+                }
+            });
+        });
+
+    </script>      
+    <!-- Navbar End -->
+    

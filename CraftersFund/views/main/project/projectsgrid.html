@@ -1,0 +1,112 @@
+<%- include('../partials/header.html') %>
+        <div class="container content">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row flex-between-center">
+                <div class="col-sm-auto mb-2 mb-sm-0">
+                  <% 
+                  let startIndex = (page - 1) * limit + 1;
+                  let endIndex = startIndex + projects.length - 1;
+                  %>
+                  <h6 class="mb-0">Showing <%= startIndex %>-<%= endIndex %> of <%= totalProjects %> Products</h6>
+                </div>
+                <div class="col-sm-auto">
+                  <div class="row gx-2 align-items-center">
+                    <div class="col-auto">
+                      <form class="row gx-2">
+                        <div class="col-auto"><small>Sort by:</small></div>
+                        <div class="col-auto">
+                          <select class="form-select form-select-sm" name="sort" aria-label="Bulk actions" onchange="this.form.submit()">
+                            <option value="match" <%= currentSort === 'match' ? 'selected' : '' %>>Best Match</option>
+                            <option value="newest" <%= currentSort === 'newest' ? 'selected' : '' %>>Newest</option>
+                            <option value="price" <%= currentSort === 'price' ? 'selected' : '' %>>Price</option>
+                          </select>                        
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-auto pe-0"> <a class="text-600 px-1" href="/Projects-List?page=<%= page %>&limit=24" data-bs-toggle="tooltip" data-bs-placement="top" title="Product List"><span class="fas fa-list-ul"></span></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <% 
+                  function formatValue(number) {
+                        if (number >= 1000000) {
+                            return (number / 1000000).toFixed(1) + ' M';
+                        } else if (number >= 1000) {
+                            return (number / 1000).toFixed(1) + ' K';
+                        }
+                        return number.toString();
+                    }
+                %>
+                <% projects.forEach(function(project) { %>
+                  <div class="mb-4 col-md-6 col-lg-4">
+                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                      <div class="overflow-hidden">
+                        <div class="position-relative rounded-top overflow-hidden">
+                          <!-- Utilizando a primeira imagem do array ImagesOfPlace como representativa -->
+                          <div style="display: flex;align-items: center;justify-content: center;overflow: hidden;height: 150px;">
+                            <a class="d-block" href="/project/<%= project._id %>">
+                              <% if (project.ImagesOfPlace && project.ImagesOfPlace.length > 0) { %>
+                                <% if (Array.isArray(project.ImagesOfPlace)){ %>
+                                  <img class="img-fluid rounded-top" src="/<%= project.ImagesOfPlace[0] %>" alt="<%= project['project-name'] %>" style="width: 1098px !important; padding: 1em;"/>
+                                <% } else { %>
+                                  <img class="img-fluid rounded-top" src="/<%= project.ImagesOfPlace %>" alt="Default Image" style="width: 1098px !important; padding: 1em;"/>
+                                <% } %>
+                              <% } else { %>
+                                <img class="img-fluid rounded-top" src="/public/assets/img/projects/ImageNotAvaliable.png" alt="Default Image"/>
+                              <% } %>
+                            </a>
+                          </div>
+                          
+                          <span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-2 top-0 end-0">New</span>
+                        </div>
+                        <div class="p-3">
+                          <h5 class="fs-9">
+                            <a class="text-1100" href="/project/<%= project._id %>"><%= project['project-name'] %></a>
+                          </h5>
+                          <div class="fs-10 mb-3">
+                            <%- project['project-description'].length > 130 ? project['project-description'].substring(0, 128) + '...' : project['project-description'] %>
+                          </div>
+                          <h5 class="fs-md-7 text-warning mb-0 d-flex align-items-center mb-3">
+                            $<%= formatValue(project['project-totalbudget']) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                          </h5>
+                          <p class="fs-10 mb-1">Required Funding: 
+                            <strong>
+                              $<%= formatValue(project['project-totalbudget'] * project['project-fundingpercentage'] / 100) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-between-center px-3">
+                        <div></div>
+                        <div>
+                          <a class="btn btn-sm btn-falcon-default me-2" href="/project/<%= project._id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="View Details"><span class="far fa-eye"></span></a>
+                          <a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Invest Now"><span class="fas fa-hand-holding-usd"></span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>  
+              </div>
+            </div>
+            <div class="card-footer bg-body-tertiary d-flex justify-content-center">
+              <% if (totalPages > 1) { %>
+                  <% for (let i = 1; i <= totalPages; i++) { %>
+                      <a class="btn btn-sm btn-falcon-default <%= i === page ? 'text-primary' : '' %>" href="/Projects-Grid?page=<%= i %>&limit=24"><%= i %></a>
+                  <% } %>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+<%- include('../partials/footer.html') %>

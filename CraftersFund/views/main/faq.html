@@ -1,0 +1,50 @@
+<%- include('partials/header.html') %>
+<div class="container content">
+          
+    <div class="card mb-3">
+      <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(/public/assets/img/icons/spot-illustrations/corner-4.png);">
+      </div>
+      <!--/.bg-holder-->
+
+      <div class="card-body position-relative">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>FAQ Accordion</h3>
+            <p class="mb-0">Below you'll find answers to the questions we get asked the most about our Project</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="accordion border rounded overflow-hidden" id="accordionFaq">
+            <% faqs.forEach((faq, index) => { %>
+                <div class="card shadow-none rounded-bottom-0 border-bottom">
+                    <div class="accordion-item border-0">
+                        <div class="card-header p-0" id="faqAccordionHeading<%= index %>">
+                            <button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 border-0 text-start rounded-0 shadow-none collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion<%= index %>" aria-expanded="false" aria-controls="collapseFaqAccordion<%= index %>">
+                                <svg class="svg-inline--fa fa-caret-right fa-w-6 accordion-icon me-3" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="" style="transform-origin: 0.1875em 0.5em;">
+                                    <g transform="translate(96 256)">
+                                        <g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)">
+                                            <path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z" transform="translate(-96 -256)"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="fw-medium font-sans-serif text-900"><%= faq.question %></span>
+                            </button>
+                        </div>
+                        <div class="accordion-collapse collapse" id="collapseFaqAccordion<%= index %>" aria-labelledby="faqAccordionHeading<%= index %>" data-parent="#accordionFaq">
+                            <div class="accordion-body p-0">
+                                <div class="card-body pt-2">
+                                    <p class="ps-3 mb-0"><%= faq.answer %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer.html') %>

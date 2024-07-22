@@ -1,0 +1,100 @@
+<%- include('../../partials/header.html') %>
+
+<!-- Code Mirror Style Start -->
+<link rel="stylesheet" href="/public/externalpackages/codemirror-5.65.16/lib/codemirror.css">
+
+<link rel="stylesheet" href="/public/externalpackages/codemirror-5.65.16/theme/dracula.css">
+<link rel="stylesheet" href="/public/externalpackages/codemirror-5.65.16/theme/mdn-like.css">
+<link rel="stylesheet" href="/public/externalpackages/codemirror-5.65.16/theme/neat.css">
+
+<link rel="stylesheet" href="/public/css/myide.css">
+<!-- Code Mirror Style Stop -->
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+<!-- Hero End -->
+
+<!-- Main Content Start -->
+<div class="container-fluid mt-3 main-container px-2">
+    <div class="row h-100 gx-0">
+        <div class="col-md-4 d-flex flex-column px-2">
+            <!-- Problem -->
+            <div class="flex-fill content-section">
+                <h4 class="section-header"><i class="fa-regular fa-clipboard-question" style="color: #0c6fa8;"></i> Problem</h4>
+                <div class="section-body">
+                    <!-- Problem Title -->
+                    <h5><%= problem.Title %></h5>
+                    <!-- Difficulty -->
+                    <p><strong>Difficulty:</strong> <span class="badge bg-success"><%= problem.Difficulty %></span></p>
+                    <!-- Problem Description -->
+                    <p><strong>Context:</strong><br><%= problem.Description %></p>
+                    <p><br><strong>Instruction:</strong><br><%= problem.Instruction %></p> 
+                    </div>
+            </div>
+        </div>
+        <div class="resize-handle"></div>
+        <div class="col-md-8 d-flex flex-column px-2">
+            <!-- IDE/Console -->
+            <div class="ide-console content-section">
+                <div class="section-header ide-header">
+                    <div>
+                        <h4 class="section-header"><i class="fa-solid fa-code" style="color: #0ca80c;"></i> Code</h4>
+                        <div class="select-wrapper">
+                            <select id="language-select" class="language-select">
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="csharp">C#</option>
+                                <option value="c">C</option>
+                                <option value="visualbasic">Visual Basic</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="run-btn">
+                            <i class="fa-solid fa-play run-icon"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="section-body">
+                    <textarea id="container-ide"></textarea>
+                </div>
+            </div>
+            <!-- Output -->
+            <div class="output content-section">
+                <div class="section-header output-header">
+                    <h4 class="section-header"><i class="fa-solid fa-terminal" style="color: #0ca80c;"></i> Output</h4>
+                    <div class="output-actions">
+                        <span class="action-link selected" id="expected-btn"><i class="fa-solid fa-scroll"></i> Expected</span>
+                        <span class="action-link" id="result-btn"><i class="fa-solid fa-file-prescription"></i> Result</span>
+                    </div>
+                </div>
+                <div class="section-body">
+                    <!-- Expected Result -->
+                    <div class="expected-result d-none">
+                        <pre id="expected-result"><% if (problem && Object.keys(problem.Variables).length > 0) { %>Inputs<br><span class='code'><%= Object.keys(problem.Variables).map((key, index, array) => key + ' = ' + problem.Variables[key] + (index < array.length - 1 ? '; ' : '')).join('') %></span><br><br><% } %>Expected Result:<br><%- (problem && problem.Result != "") ? "<span class='code'>" + problem.Result : "<span class='code'>Unexpected Error</span>" %></span></pre>
+                    </div>
+                    <!-- Actual Result -->
+                    <div class="actual-result d-none Onsetup">
+                        <pre id="actual-result">Still nothing to see here!</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Content End -->
+
+<!-- Code Mirror Script Start -->
+<script src="/public/externalpackages/codemirror-5.65.16/lib/codemirror.js"></script>
+<script src="/public/externalpackages/codemirror-5.65.16/addon/edit/closebrackets.js"></script>
+
+<script src="/public/externalpackages/codemirror-5.65.16/mode/javascript/javascript.js"></script>
+<script src="/public/externalpackages/codemirror-5.65.16/mode/python/python.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/public/js/editor.js"></script>
+<!-- Code Mirror Script End -->
+
+<%- include('../../partials/footer.html') %>

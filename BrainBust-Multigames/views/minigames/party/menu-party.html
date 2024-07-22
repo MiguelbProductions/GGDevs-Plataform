@@ -1,0 +1,52 @@
+<%- include('../../partials/header.html') %>
+
+<link rel="stylesheet" href="/public/css/menu.css">
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+<!-- Hero End -->
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Choose Your Game Type</h2>
+    <div class="row justify-content-center">
+        <!-- Sequential Boxes Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/public/img/icons/SequentialBoxes.png" class="card-img-top game-icon" alt="Sequential Boxes">
+                <div class="card-body">
+                    <h5 class="card-title">Sequential Boxes</h5>
+                    <p class="card-text">Exercise your head to memorize long sequences, improving your long-term memory.</p>
+                    <a href="/minigames/party/sequentialboxes" class="btn btn-primary">Choose Sequential Boxes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sudoku Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/public/img/icons/Sudoku.png" class="card-img-top game-icon" alt="Sudoku">
+                <div class="card-body" style="align-items: center; display: flex;">
+                    <h5 class="card-title">Sudoku</h5>
+                    <p class="card-text">Develop your logic by filling in a grid with no repetitions in rows, columns, and smaller squares, a fun challenge to improve your problem-solving skills and concentration.</p>
+                    <a href="/minigames/programming/codemaster/problems" class="btn btn-primary">Choose Sudoku</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wordle Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/public/img/icons/Wordle.png" class="card-img-top game-icon" alt="Wordle">
+                <div class="card-body" style="align-items: center; display: flex;">
+                    <h5 class="card-title">Wordle</h5>
+                    <p class="card-text">Boost vocabulary and logic by guessing a hidden word with hints on accuracy a quick, fun way to improve language and strategy.</p>
+                    <a href="/minigames/programming/codemaster/problems" class="btn btn-primary">Choose Wordle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.html') %>

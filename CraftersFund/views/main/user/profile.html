@@ -1,0 +1,129 @@
+<%- include('../partials/header.html') %>
+<div class="container content">     
+    <div class="card mb-3">
+      <div class="card-header position-relative min-vh-25 mb-7">
+        <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(/public/assets/img/generic/4.jpg);">
+        </div>
+        <!--/.bg-holder-->
+        <div class="avatar avatar-5xl avatar-profile"><img class="rounded-circle img-thumbnail shadow-sm" src="/<%= (pageUser.profileIcon) ? pageUser.profileIcon : "public/assets/selfdata/img/DefaultProfileIcon.png"%> %>" width="200" alt=""></div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+            <div class="col-lg-10 col-md-8 col-sm-8">
+                <h4 class="mb-1"> 
+                    <%= pageUser.name %>
+                    <small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small>
+                </h4>
+                <h5 class="fs-9 fw-normal"><%= pageUser.title %></h5>
+                <p class="text-500"><%= pageUser.location %></p>
+                <% if (user && user._id.toString() != pageUser._id.toString()) { %>
+                    <form method="POST" action="/follow" style="display: inline;">
+                    <input type="hidden" name="targetUserId" value="<%= pageUser._id %>">
+                    <button class="btn btn-falcon-primary btn-sm px-3" type="submit">
+                        <% if (pageUser.followers && pageUser.followers.includes(user._id.toString())) { %>
+                            Following
+                        <% } else { %>
+                            Follow
+                        <% } %>
+                    </button>
+                    </form>
+                <% } %>   
+                <div class="border-bottom border-dashed my-4 d-lg-none"></div>
+            </div>
+            <% if (user && user._id.toString() == pageUser._id.toString()) { %>
+                <div class="col-lg-2 col-md-4 col-sm-4">
+                    <a href="/Profile/Edit/<%= pageUser.username %>" class="btn btn-primary btn-sm w-100">
+                        <i class="fas fa-edit me-2"></i>Edit Profile
+                    </a>
+                </div> 
+            <% } %>          
+        </div>
+      </div>
+    </div>
+    <div class="row g-0">
+      <div class="col-lg-8 pe-lg-2">
+            <% if (pageUser.about != null && pageUser.about != "") { %>
+                <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                    <h5 class="mb-0">About you</h5>
+                </div>
+                <div class="card-body text-justify">
+                    <%- pageUser.about %>
+                </div>   
+            <% } %>
+        </div>
+    </div>
+    <% if (pageUser.education || pageUser.experience) { %>
+        <div class="col-lg-4 ps-lg-2">
+            <div class="sticky-sidebar">
+                <% if (pageUser.experience && pageUser.experience.length > 0) { %>
+                <div class="card mb-3">
+                    <div class="card-header bg-body-tertiary">
+                        <h5 class="mb-0">Experience</h5>
+                    </div>
+                    <div class="card-body fs-10">
+                        <% pageUser.experience.forEach(function(exp) { %>
+                        <div class="d-flex">
+                            <div class="flex-1 position-relative ps-3">
+                                <h6 class="fs-9 mb-0"><%= exp.role %></h6>
+                                <p class="mb-1"><%= exp.company %></p>
+                                <p class="text-1000 mb-0"><%= exp.duration %></p>
+                                <div class="border-bottom border-dashed my-3"></div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+                <% } %>
+                <% if (pageUser.education && pageUser.education.length > 0) { %>
+                <div class="card mb-3">
+                    <div class="card-header bg-body-tertiary">
+                        <h5 class="mb-0">Education</h5>
+                    </div>
+                    <div class="card-body fs-10">
+                        <% pageUser.education.forEach(function(edu) { %>
+                        <div class="d-flex">
+                            <div class="flex-1 position-relative ps-3">
+                                <h6 class="fs-9 mb-0"><%= edu.degree %> at <%= edu.school %></h6>
+                                <p class="mb-1"><%= edu.location %></p>
+                                <p class="text-1000 mb-0"><%= edu.duration %></p>
+                                <div class="border-bottom border-dashed my-3"></div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    <% } %>
+    <% if (followers && followers.length > 0) { %> 
+        <div class="card mt-3">
+            <div class="card-header bg-body-tertiary">
+                <div class="row align-items-center">
+                <div class="col">
+                    <h5 class="mb-0" id="followers">Followers <span class="d-none d-sm-inline-block">(<%= followers.length %>)</span></h5>
+                </div>
+                </div>
+            </div>
+            <div class="card-body bg-body-tertiary px-1 py-0">
+                <div class="row g-0 text-center fs-10">
+                <% followers.forEach(follower => { %>
+                    <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-1">
+                        <div class="bg-white dark__bg-1100 p-3 h-100">
+                            <a href="/Profile/<%= follower.username %>">
+                                <img class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm" src="/<%= follower.profileIcon %>" alt="" width="100">
+                            </a>
+                        <h6 class="mb-1"><a href="/profile/<%= follower.username %>"><%= follower.name %></a></h6>
+                        <% if (follower.title) { %> <p class="fs-11 mb-1"><a class="text-700" href="#!"><%= follower.title %></a></p> <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    </div>
+    </div>
+        
+<%- include('../partials/footer.html') %>

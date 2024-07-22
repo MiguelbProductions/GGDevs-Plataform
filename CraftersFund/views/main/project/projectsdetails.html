@@ -1,0 +1,232 @@
+<%- include('../partials/header.html') %>
+        <div class="container content">      
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-4">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                  <div class="product-slider" id="galleryTop">
+                    <div class="swiper theme-slider position-lg-absolute all-0" data-swiper='{"autoHeight":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"thumb":{"spaceBetween":5,"slidesPerView":5,"loop":true,"freeMode":true,"grabCursor":true,"loopedSlides":5,"centeredSlides":true,"slideToClickedSlide":true,"watchSlidesVisibility":true,"watchSlidesProgress":true,"parent":"#galleryTop"},"slideToClickedSlide":true}'>
+                      <div class="swiper-wrapper h-100">
+                        <% if (Array.isArray(project.ImagesOfPlace)){ %>
+                          <% project.ImagesOfPlace.forEach(function(image) { %>
+                            <div class="swiper-slide h-100">
+                                <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= image || "public/assets/img/projects/ImageNotAvaliable.png" %>" alt="" />
+                            </div>
+                          <% }); %>
+                        <% } else { %>
+                          <div class="swiper-slide h-100">
+                            <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= project.ImagesOfPlace || "public/assets/img/projects/ImageNotAvaliable.png" %>" alt="" />
+                          </div>
+                        <% } %>
+
+                        <% if (Array.isArray(project.ProjectPlan)){ %>
+                          <% project.ProjectPlan.forEach(function(image) { %>
+                            <div class="swiper-slide h-100">
+                                <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= image %>" alt="" />
+                            </div>
+                          <% }); %>
+                        <% } else { %>
+                          <div class="swiper-slide h-100">
+                            <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= project.ProjectPlan %>" alt="" />
+                          </div>
+                        <% } %>
+
+                        <% if (Array.isArray(project.LicensesAndApprovals)){ %>
+                          <% project.LicensesAndApprovals.forEach(function(image) { %>
+                            <div class="swiper-slide h-100">
+                                <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= image %>" alt="" />
+                            </div>
+                          <% }); %>
+                        <% } else { %>
+                          <div class="swiper-slide h-100">
+                            <img class="rounded-1 object-fit-cover h-100 w-100" src="/<%= project.LicensesAndApprovals %>" alt="" />
+                          </div>
+                        <% } %>                       
+                      </div>
+                      <div class="swiper-nav">
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% 
+                  function formatValue(number) {
+                        if (number >= 1000000) {
+                            return (number / 1000000).toFixed(1) + ' M';
+                        } else if (number >= 1000) {
+                            return (number / 1000).toFixed(1) + ' K';
+                        }
+                        return number.toString();
+                    }
+                %>
+                <div class="col-lg-6">
+                  <h5>
+                    <%= project['project-name'] %> 
+                    <span style="font-size: 0.7em; color: #afafaf;">
+                      (<%= project['_id'] %>)
+                    </span>
+                  </h5>
+                  <!--
+                  <a class="fs-10 mb-2 d-block" href="#!">Computer &amp; Accessories</a>
+                  <div class="fs-11 mb-3 d-inline-block text-decoration-none">
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star text-warning"></span>
+                    <span class="fa fa-star-half-alt text-warning star-icon"></span>
+                    <span class="ms-1 text-600">(8)</span>
+                  </div>
+                  -->
+                  <p class="fs-10">
+                    <%- project['project-description'].length > 185 ? project['project-description'].substring(0, 185) + '...' : project['project-description'] %>
+                  </p>
+                  <h4 class="d-flex align-items-center">
+                    <span class="text-warning me-2">
+                      $<%= formatValue(project['project-totalbudget']) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                    </span>
+                  </h4>
+                  <%
+                    let totalRequired = project['project-totalbudget'] * project['project-fundingpercentage'] / 100;
+                    let raisedAmount = project['project-fundedamount'] || 0.0157;
+                    let percentRaised = Math.min((raisedAmount / totalRequired) * 100, 100);
+                    let displayPercent = (raisedAmount / totalRequired) * 100;
+                  %>
+
+                  <div class="progress-container mt-5 mb-4">
+                    <span class="label left">0 <%= project['project-budgetcurrency'].toUpperCase() %></span>
+                    <div class="progress mt-3 mb-3" role="progressbar" aria-valuenow="<%= percentRaised %>" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar" style="width: <%= percentRaised %>%;"><%= displayPercent.toFixed(1) %>%</div>
+                    </div>
+                    <span class="label right"><%= formatValue(totalRequired) %> <%= project['project-budgetcurrency'].toUpperCase() %></span>
+                  </div>
+                  <p class="fs-10 mb-3">
+                    Tags:  
+                    <% project['project-tag'].forEach(element => { %>
+                    <a class="ms-2" href="#!"><%= element %>,</a>
+                    <% }); %></p>
+                  <div class="row">
+                    <div class="col-auto pe-2">
+                      <div class="input-group input-group-sm" data-quantity="data-percentage">
+                        <button class="btn btn-sm btn-outline-secondary border border-300" data-field="input-quantity" data-type="minus">-</button>
+                        <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px" />
+                        <button class="btn btn-sm btn-outline-secondary border border-300" data-field="input-quantity" data-type="plus">+</button>
+                      </div>
+                    </div>
+                    <div class="col-auto px-0">
+                      <a class="btn btn-sm btn-primary" href="#!">
+                        <span class="fas fa-cart-plus me-sm-2"></span>
+                        <span class="d-none d-sm-inline-block">Add To Cart</span>
+                      </a>
+                    </div>
+                    <div class="col-auto px-2 mb-2">
+                      <a class="btn btn-sm btn-info" href="/support?projectId=<%= project['_id'] %>"><span class="fas fa-life-ring me-sm-2"></span><span class="d-none d-sm-inline-block">Support</span></a>
+                    </div>
+                    <div class="col-auto px-0">
+                      <% if (user) { %>
+                        <form method="POST" action="/toggle-wishlist" style="display: inline;">
+                      <% } %>
+                        <input type="hidden" name="projectId" value="<%= project._id %>">
+                        <button class="btn btn-sm btn-outline-danger border border-300" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List">
+                          <% if (user) { %>
+                            <span class="<%= project.wishlist && project.wishlist.includes(user._id.toString()) ? 'fas' : 'far' %> fa-heart me-1"></span>
+                          <% } else { %>
+                            <span class="far fa-heart me-1"></span>
+                          <% } %>
+                          <%= (project.wishlist && project.wishlist.length > 0) ? project.wishlist.length : 0 %>
+                        </button>
+                      <% if (user) { %>
+                        </form>             
+                      <% } %>        
+                    </div>
+                    
+                  </div>
+                </div>                  
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="mt-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation"><a class="nav-link active ps-0" id="description-tab" data-bs-toggle="tab" href="#tab-description" role="tab" aria-controls="tab-description" aria-selected="true">Description</a></li>
+                      <li class="nav-item" role="presentation"><a class="nav-link px-2 px-md-3" id="specifications-tab" data-bs-toggle="tab" href="#tab-specifications" role="tab" aria-controls="tab-specifications" aria-selected="false" tabindex="-1">Specific Infos </a></li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="tab-description" role="tabpanel" aria-labelledby="description-tab">
+                        <div class="mt-3">
+                          <%- project['project-description'] %>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="tab-specifications" role="tabpanel" aria-labelledby="specifications-tab">
+                        <table class="table fs-10 mt-3">
+                          <tbody>
+                            <tr>
+                              <td class="bg-100" style="width: 30%;">Total Budget</td>
+                              <td>$<%= formatValue(project['project-totalbudget']) %> <%= project['project-budgetcurrency'].toUpperCase() %></td>
+                            </tr>
+                            <tr>
+                              <td class="bg-100" style="width: 30%;">Funding Required (%)</td>
+                              <td><%= project['project-fundingpercentage'] %>%</td>
+                            </tr>
+                            <tr>
+                              <td class="bg-100" style="width: 30%;">Min. Investment Per Investor</td>
+                              <td><%= formatValue(project['project-mininvestment']) %>%</td>
+                            </tr>
+                            <tr>
+                              <td class="bg-100" style="width: 30%;">Estimated Timeline</td>
+                              <td><%= project['project-timeline'] %></td>
+                            </tr>
+                            <tr>
+                              <td class="bg-100">Platform</td>
+                              <td><%= project['project-platform'] %></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header bg-body-tertiary">
+              <h5>Discussions</h5>
+            </div>
+            <div class="card-body">
+              <% if (project.comments && project.comments.length) { %>
+                <% project.comments.forEach(function(comment) { %>
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div>
+                      <%- comment.comment %> <br>
+                      <small class="text-muted" ><%= comment.createdAt.toISOString().slice(0, 10) %></small>
+                    </div>
+                    <div class="d-flex align-items-center mx-4 me-md-3">
+                      <img src="/<%= comment.user.profileIcon %>" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
+                      <div class="ms-3">
+                        <h6 class="mb-0"><%= comment.user.name %></h6>
+                      </div>
+                    </div>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <p>No comments yet. Be the first to discuss this project!</p>
+              <% } %>
+            </div>
+            <% if (user) { %>
+              <div class="card-footer pt-0">
+                <form class="needs-validation" novalidate method="POST" action="/add-project-comment">
+                  <input type="hidden" name="userId" value="<%= user._id %>">
+                  <input type="hidden" name="projectId" value="<%= project._id %>">
+                  <div class="mb-4">
+                    <textarea class="tinymce d-none" data-tinymce="data-tinymce" name="comment" id="comment" required></textarea>
+                    <div class="invalid-feedback fs-9">Please write a comment.</div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Post Comment</button>
+                </form>
+              </div>
+            <% } %>
+          </div>          
+        </div>
+      </div>
+    </main>
+<%- include('../partials/footer.html') %>

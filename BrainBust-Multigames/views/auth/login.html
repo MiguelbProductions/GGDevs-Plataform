@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Login | Connecto</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/img/icons/Logo.png" type="image/x-icon">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+	
+    <!-- Customized Bootstrap Stylesheet -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <!-- Template Stylesheet -->
+	<link rel="stylesheet" href="/public/css/account.css">
+</head>
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-6">
+					<div class="wrap">
+						<div class="img" style="background-image: url(/public/img/bg/account.jpg);"></div>
+						<div class="login-wrap p-4 p-md-5"> 
+						<div id="sucess-message" class="alert alert-success <%= debug.success ? '' : 'invisible' %>">
+							<%- debug.success ? debug.success : '' %> 
+						</div>
+						<div class="d-flex">
+							<div class="w-100">
+								<h3 class="mb-5">Login</h3>
+							</div>
+						</div>
+						<form id="loginForm" class="signin-form" method="post">
+						<div class="form-group">
+							<input type="text" value="<%= fields.username_or_email ? fields.username_or_email : '' %>" name="username_or_email" id="username_or_email" class="form-control <%= debug.errors && debug.errors.username_or_email ? 'is-invalid' : '' %>" required>
+							<label class="form-control-placeholder" for="username">Email or Username</label>
+							<% if (debug.errors && debug.errors.username_or_email) { %>
+								<div class="invalid-feedback"><%= debug.errors.username_or_email %></div>
+							<% } %>
+						</div>
+						<div class="form-group accounts mt-4">
+							<input id="password-field" type="password" name="passwordvalue" class="form-control <%= debug.errors && debug.errors.passwordvalue ? 'is-invalid' : '' %>" required>
+							<label class="form-control-placeholder" for="password">Password</label>
+							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							<% if (debug.errors && debug.errors.passwordvalue) { %>
+								<div class="invalid-feedback"><%= debug.errors.passwordvalue %></div>
+							<% } %>
+						</div>
+						<div class="form-group submitbtn">
+							<button type="submit" id="LoginBtn" class="form-control btn btn-primary rounded submit px-3">Login</button>
+						</div>
+						<!--
+						<div class="form-group d-md-flex">
+							<div class="w-50 text-left">
+								<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+								<input type="checkbox" checked>
+								<span class="checkmark"></span>
+									</label>
+							</div>
+							<div class="w-50 text-md-right">
+								<a href="#">Forgot Password</a>
+							</div>
+						</div>
+						-->
+					</form>
+					<p class="text-center">
+						Don't want login? <a href="..">Home</a>
+					</p>
+					<p class="text-center">
+						OR
+					</p>
+					<p class="text-center">
+						Not a member? <a href="register">Register</a>
+					</p>
+				</div>
+		      </div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<script src="/public/js/popper.js"></script>
+	<script src="/public/js/account.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
+

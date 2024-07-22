@@ -1,0 +1,120 @@
+<%- include('../partials/header.html') %>
+
+        <div class="container content">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row flex-between-center">
+                <div class="col-sm-auto mb-2 mb-sm-0">
+                  <% 
+                  let startIndex = (page - 1) * limit + 1;
+                  let endIndex = startIndex + projects.length - 1;
+                  %>
+                  <h6 class="mb-0">Showing <%= startIndex %>-<%= endIndex %> of <%= totalProjects %> Products</h6>
+                </div>
+                <div class="col-sm-auto">
+                  <div class="row gx-2 align-items-center">
+                    <div class="col-auto">
+                      <form class="row gx-2">
+                        <div class="col-auto"><small>Sort by: </small></div>
+                        <div class="col-auto">
+                          <select class="form-select form-select-sm" name="sort" aria-label="Bulk actions" onchange="this.form.submit()">
+                            <option value="match" <%= currentSort === 'match' ? 'selected' : '' %>>Best Match</option>
+                            <option value="newest" <%= currentSort === 'newest' ? 'selected' : '' %>>Newest</option>
+                            <option value="price" <%= currentSort === 'price' ? 'selected' : '' %>>Price</option>
+                          </select>  
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-auto pe-0"><a class="text-600 px-1" href="/Projects-Grid?page=<%= page %>&limit=24" data-bs-toggle="tooltip" title="Product Grid"><span class="fas fa-th"></span></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body p-0 overflow-hidden">
+              <div class="row g-0">
+                <% 
+                  function formatValue(number) {
+                        if (number >= 1000000) {
+                            return (number / 1000000).toFixed(1) + ' M';
+                        } else if (number >= 1000) {
+                            return (number / 1000).toFixed(1) + ' K';
+                        }
+                        return number.toString();
+                    }
+                %>
+                <% projects.forEach(function(project) { %>
+                  <div class="row my-2">
+                    <div class="col-sm-5 col-md-4 d-flex align-items-center">
+                      <div class="position-relative h-sm-100 overflow-hidden w-100" style="height: 150px !important;">
+                        <a class="d-block h-100 d-flex align-items-center w-100" href="/project/<%= project._id %>">
+                          <% if (project.ImagesOfPlace && project.ImagesOfPlace.length > 0) { %>
+                            <% if (Array.isArray(project.ImagesOfPlace)){ %>
+                              <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered img-cover" src="/<%= project.ImagesOfPlace[0] %>" alt="<%= project['project-name'] %>"/>
+                            <% } else { %>
+                              <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered img-cover" src="/<%= project.ImagesOfPlace %>" alt="Default Image"/>
+                            <% } %>
+                          <% } else { %>
+                            <img class="img-fluid object-fit-cover w-sm-100 rounded-1 absolute-sm-centered img-cover" src="/public/assets/img/projects/ImageNotAvaliable.png" alt="Default Image"/>
+                            <% } %>
+                        </a>
+                        <div class="badge rounded-pill bg-success position-absolute top-0 end-0 me-2 mt-2 fs-11 z-2">New</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-7 col-md-8">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <h5 class="mt-3 mt-sm-0"><a class="text-1100 fs-9 fs-lg-8" href="/project/<%= project._id %>"><%= project['project-name'] %></a></h5>
+                          <p class="fs-10 mb-2 mb-md-3"><a class="text-500" href="#">
+                            <%= project['project-tag'].join(' & ') %>
+                          </a></p>
+                          <ul class="list-unstyled d-none d-lg-block">
+                            <li>
+                              <span class="fas fa-circle" data-fa-transform="shrink-12"></span>
+                              <span style="font-size: 0.85em;"> Required Funding: 
+                                $<%= formatValue(project['project-totalbudget'] * project['project-fundingpercentage'] / 100) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                              </span>
+                            </li>
+                            <li>
+                              <span class="fas fa-circle" data-fa-transform="shrink-12"></span>
+                              <span style="font-size: 0.85em;"> Profit Share: 
+                              $<%= formatValue(project['project-profitshare'] * project['project-estimatedroi'] / 100)  %> 
+                              <%= project['project-budgetcurrency'].toUpperCase() %>
+                              </span>
+                            </li>
+                            <li>
+                              <span class="fas fa-circle" data-fa-transform="shrink-14"></span>
+                              <span style="font-size: 0.85em;"> Estimated ROI: $<%= formatValue(project['project-estimatedroi'].toLocaleString()) %> <%= project['project-budgetcurrency'].toUpperCase() %>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-lg-4 d-flex justify-content-between flex-column">
+                          <div>
+                            <h4 class="fs-8 fs-md-7 text-warning mb-0">$<%= formatValue(project['project-totalbudget'])  %></h4>
+                            <!--
+                            <div class="mb-2 mt-3"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(8)</span></div>
+                            -->
+                          </div>
+                          <div class="mt-2"><a class="btn btn-sm btn-outline-secondary border-300 d-lg-block me-2 me-lg-0" href="#"><span class="far fa-heart"></span><span class="ms-2 d-none d-md-inline-block">Favourite</span></a><a class="btn btn-sm btn-primary d-lg-block mt-lg-2" href="#"><span class="fas fa-hand-holding-usd"></span><span class="ms-2 d-none d-md-inline-block">Invest Now</span></a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% }); %>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-body-tertiary d-flex justify-content-center">
+              <% if (totalPages > 1) { %>
+                  <% for (let i = 1; i <= totalPages; i++) { %>
+                      <a class="btn btn-sm btn-falcon-default <%= i === page ? 'text-primary' : '' %>" href="/Projects-List?page=<%= i %>&limit=24"><%= i %></a>
+                  <% } %>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+<%- include('../partials/footer.html') %>

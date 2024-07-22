@@ -1,0 +1,34 @@
+========================================================
+
+Main Home:
+ - Arranjar estilo
+ - Colocar comboboxs a funcionar
+ - Tirar o footer do template
+
+Visualização dos Perfil:
+ - Perfil do Investidor
+  - Adicionar Projetos Investidos
+ - Perfil do Emprendedor
+
+Adicionar Notificações:
+ - Recomendar novos projetos aos Investidores
+ - Adicionar notificação de nova resposta no ticket
+
+Melhorar Projetos:
+ - Caso o projeto não tenha imagem coloca uma temporaria
+ - Colocar Funcionalidade de Whilist a funcionar
+ - Sistema de Chatting a cada Projeto
+ - Adicionar sisteam de Pagamento em crypto
+ - Barra de Progresso no Projeto
+
+Novas Paginas:
+ - Pagina dos Emprendedores
+ - Pagina de Comunidade
+
+Login com conta Metamask
+ - Adicionar uma nova etapa no registro que é conectar uma conta metamask a conta criada
+
+Dashboard
+ - Estatisticas e Graficos
+
+========================================================

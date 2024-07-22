@@ -1,0 +1,58 @@
+<%- include('../partials/header.html') %>
+<div class="container content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row flex-between-center">
+                    <div class="col-md">
+                        <h5 class="mb-2 mb-md-0">Community for <%= project['project-name'] %></h5>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <% if (project.communityPosts && project.communityPosts.length > 0) { %>
+                <% project.communityPosts.forEach(function(post) { %>
+                    <div class="card mb-3">
+                        <div class="card-header pb-md-1">
+                            <h5><%= post.title %></h5>
+                        </div>
+                        <div class="card-body pt-md-0 pb-md-1">
+                            <p><%- post.content %></p>
+                            <p>Posted at: <%= post.createdAt %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div>
+                    No posts found for this project.
+                </div>
+            <% } %>
+
+            <% if (user._id.toString() == project.ownerId) { %>
+                <div class="card mt-3">
+                    <div class="card-header pb-md-2">
+                        <h5>Add New Post</h5>
+                    </div>
+                    <div class="card-body pt-1">
+                        <form class="needs-validation" novalidate method="POST" action="/add-project-community-post/<%= project._id %>">
+                            <div class="mb-1">
+                                <label for="postTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="postTitle" name="title" required>
+                                <div class="invalid-feedback fs-9">Please write a title for post.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postContent" class="form-label">Body</label>
+                                <textarea class="tinymce d-none" data-tinymce="data-tinymce" name="content" id="content" required></textarea>
+                                <div class="invalid-feedback fs-9">Please write a body for post.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Add Post</button>
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.html') %>

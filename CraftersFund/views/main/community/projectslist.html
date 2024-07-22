@@ -1,0 +1,55 @@
+<%- include('../partials/header.html') %>
+<div class="container content">
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row flex-between-center">
+                <div class="col-8">
+                    <h5 class="mb-2 mb-md-0">Community - Following (<%= communityProjects.length %>)</h5>
+                </div>
+                <div class="col-4">
+                    <input id="searchInput" class="form-control form-control-sm" type="text" placeholder="Search...">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <% communityProjects.forEach(function(project) { %>
+        <div class="col-md-6 col-lg-4 py-3 project-item">
+            <a href="/Community/<%= project._id %>">
+                <div class="card bg-dark text-white overflow-hidden" data-bs-theme="light" style="max-width: 30rem;">
+                    <div class="card-img-top d-flex align-items-center" style="max-height: 150px; overflow: hidden;">
+                        <% if (project.ImagesOfPlace && project.ImagesOfPlace.length > 0) { %>
+                        <% if (Array.isArray(project.ImagesOfPlace)){ %>
+                        <img class="img-fluid" src="/<%= project.ImagesOfPlace[0] %>" alt="<%= project['project-name'] %>" />
+                        <% } else { %>
+                        <img class="img-fluid" src="/<%= project.ImagesOfPlace %>" alt="Default Image" />
+                        <% } %>
+                        <% } else { %>
+                        <img class="img-fluid" src="/public/assets/img/projects/ImageNotAvaliable.png" alt="Default Image" />
+                        <% } %>
+                    </div>
+                    <div class="card-img-overlay d-flex align-items-end" style="text-shadow: 1px 1px 2px black;">
+                        <div>
+                            <h5 class="card-title text-white"><%= project['project-name'] %></h5>
+                            <p class="card-text" style="max-height: 100px; overflow: hidden;"><%- project['project-description'] %></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('../partials/footer.html') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".project-item").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+<%- include('../../partials/header.html') %>
+
+<link rel="stylesheet" href="/public/css/menu.css">
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+<!-- Hero End -->
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Choose Your Game Type</h2>
+    <div class="row justify-content-center">
+        <!-- Dev Games Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/public/img/icons/CodeMaster.png" class="card-img-top game-icon" alt="Dev Games">
+                <div class="card-body">
+                    <h5 class="card-title">Code Master</h5>
+                    <p class="card-text">Do exercises to improve or start your journey in programming.</p>
+                    <a href="/minigames/programming/codemaster/problems" class="btn btn-primary">Choose Code Master</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/public/img/icons/CodeSheriff.png" class="card-img-top game-icon" alt="Party Games">
+                <div class="card-body" style="align-items: center; display: flex;">
+                    <h5 class="card-title">Code Sheriff</h5>
+                    <p class="card-text">Detect errors in the provided code and enhance your programming logic.</p>
+                    <a href="/minigames/programming/codecherif" class="btn btn-primary">Choose Code Sheriff</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.html') %>

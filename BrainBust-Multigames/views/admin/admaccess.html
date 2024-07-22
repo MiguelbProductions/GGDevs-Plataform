@@ -1,0 +1,41 @@
+<%- include('../partials/header.html') %>
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+<!-- Hero End -->
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <h2 class="card-header text-center">Login</h2>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="user" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="user" name="user" value="<%= typeof user !== 'undefined' ? user : '' %>" placeholder="Enter your username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pass" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter your password" required>
+                        </div>
+
+                        <% if (typeof error !== 'undefined' && error != 'Invalid' && error) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= error %>
+                            </div>
+                        <% } %>
+                        
+                        <div class="d-grid">
+                            <input type="submit" class="btn btn-primary" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.html') %>

@@ -1,0 +1,109 @@
+<% let BlockPages = ["codemaster", "Myide", "admaccess"]; %>
+
+<% if (BlockPages.includes(currentPage)) { %>
+<!-- Newsletter Start -->
+<div class="container-fluid bg-primary newsletter py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-md-5 ps-lg-0 pt-5 pt-md-0 text-start wow fadeIn" data-wow-delay="0.3s">
+                <img class="img-fluid" src="/public/img/newsletter.png" alt="">
+            </div>
+            <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
+                <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Newsletter</div>
+                <h1 class="text-white mb-4">Let's subscribe the newsletter</h1>
+                <div class="position-relative w-100 mt-3 mb-2">
+                    <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text"
+                        placeholder="Enter Your Email" style="height: 48px;">
+                    <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
+                            class="fa fa-paper-plane text-primary fs-4"></i></button>
+                </div>
+                <small class="text-white-50">Subscribe to receive all updated information</small>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Newsletter End -->
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                <a href="#" class="d-inline-block mb-3">
+                    <h1 class="text-white">Brain<span class="text-primary">Burst</span></h1>
+                </a>
+                <p class="mb-0">Revolutionizing programming education with interactive and engaging learning experiences. Join our community to unlock your coding potential.</p>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="btn btn-link"><i class="fa fa-map-marker-alt me-3"></i>123 Code Street, Tech City, USA</p>
+                <a class="btn btn-link" href="tel:+351927326387"><i class="fa fa-phone-alt me-3"></i>+351 927-326-387</a>
+                <a class="btn btn-link" href="mailto:support@brainburst.com" target="_blank"><i class="fa fa-envelope me-3"></i>support@brainburst.com</a>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                <h5 class="text-white mb-4">Home | Quick Links</h5>
+                <a class="btn btn-link" href="#AboutUs">About Us</a>
+                <a class="btn btn-link" href="#OurServices">Our Services</a>
+                <a class="btn btn-link" href="#WhychooseUs">Why choose Us</a>
+                <a class="btn btn-link" href="#FAQ">FAQ</a>
+                <a class="btn btn-link" href="#OurTeam">Our Team</a>
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                <h5 class="text-white mb-4">Our Services</h5>
+                <p class="btn btn-link">Interactive Programming Minigames</p>
+                <p class="btn btn-link">Personalized Learning Paths</p>
+                <p class="btn btn-link">Coding Challenges and Competitions</p>
+                <p class="btn btn-link">Supportive Coding Community</p>
+            </div>
+        </div>
+    </div>
+    <div class="container wow fadeIn" data-wow-delay="0.1s">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Brain Burst</a>, All Right Reserved.
+
+                    Designed By <a class="border-bottom" href="https://github.com/MiguelbProductions" target="_blank">Miguellb</a>
+                </div>
+                <!--
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="#">Home</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Help</a>
+                        <a href="#">FAQs</a>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
+<% } %>
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/public/lib/wow/wow.min.js"></script>
+<script src="/public/lib/easing/easing.min.js"></script>
+<script src="/public/lib/waypoints/waypoints.min.js"></script>
+<script src="/public/lib/counterup/counterup.min.js"></script>
+<script src="/public/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/public/js/main.js"></script>
+</body>
+
+</html>

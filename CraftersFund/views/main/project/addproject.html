@@ -1,0 +1,221 @@
+<%- include('../partials/header.html') %>
+<form id="main-form" method="post" action="/addGame" enctype="multipart/form-data">
+  <div class="container content">            
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row flex-between-center">
+          <div class="col-md">
+            <h5 class="mb-2 mb-md-0">Add the Game</h5>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary" type="submit">Add Game </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-0">
+      <div class="col-lg-8 pe-lg-2">
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary">
+            <h6 class="mb-0">Basic information</h6>
+          </div>
+          <div class="card-body">
+            <div class="row gx-2">
+              <div class="col-12 mb-3">
+                <label class="form-label" for="project-name">Game name <span class="required-alert">*</span></label>
+                <input class="form-control" id="project-name" name="project-name" type="text" required>
+              </div>
+              <div class="col-12 mb-3">
+                <label class="form-label" for="project-description">Game description</label>
+                <textarea class="tinymce d-none" data-tinymce="data-tinymce" name="project-description" id="project-description"></textarea>
+              </div>                   
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary">
+            <h6 class="mb-0">Location</h6>
+          </div>
+          <div class="card-body">
+            <div class="row gx-2">
+              <div class="col-12 mb-3">
+                <label class="form-label" for="project-country">Country <span class="required-alert">*</span></label>
+                <input class="form-control" id="project-country" name="project-country" type="text" required>
+              </div>
+              <div class="col-12 mb-3">
+                <label class="form-label" for="project-platform">Platform(s) <span class="required-alert">*</span> <span data-bs-toggle="tooltip" data-bs-placement="top" title="Which platforms will it be supported on (PC, PS5...)"><span class="fas fa-question-circle text-primary fs-10 ms-1"></span></span></label>
+                <input class="form-control" id="project-platform" name="project-platform" type="text" required>
+              </div>
+            </div>
+          </div>
+          </div>
+            <div class="card mb-3">
+              <div class="card-header bg-body-tertiary">
+                <h6 class="mb-0">Technical Details</h6>
+              </div>
+              <div class="card-body">
+                <div class="card-header bg-body-tertiary">
+                  <h6 class="mb-0">Images of Game (Optional)</h6>
+                </div>
+                <div class="dropzone dropzone-multiple p-0" id="dropzoneMultipleFileUpload1" data-dropzone="data-dropzone" action="#!" data-options='{"acceptedFiles":"image/*"}'>
+                  <div class="fallback">
+                    <input name="file" type="file" multiple="multiple" />
+                  </div>
+                  <div class="dz-message" data-dz-message="data-dz-message"> <img class="me-2" src="/public/assets/img/icons/cloud-upload.svg" width="25" alt="" /><span class="d-none d-lg-inline">Drag your image here<br/>or, </span><span class="btn btn-link p-0 fs-10">Browse</span></div>
+                  <div class="dz-preview dz-preview-multiple m-0 d-flex flex-column">
+                    <div class="d-flex media align-items-center mb-3 pb-3 border-bottom btn-reveal-trigger"><img class="dz-image" src="/public/assets/img/icons/cloud-upload.svg" alt="..." data-dz-thumbnail="data-dz-thumbnail" />
+                      <div class="flex-1 d-flex flex-between-center">
+                        <div>
+                          <h6 data-dz-name="data-dz-name"></h6>
+                          <div class="d-flex align-items-center">
+                            <p class="mb-0 fs-10 text-400 lh-1" data-dz-size="data-dz-size"></p>
+                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                          </div>
+                        </div>
+                        <div class="dropdown font-sans-serif">
+                          <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal dropdown-caret-none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h"></span></button>
+                          <div class="dropdown-menu dropdown-menu-end border py-2"><a class="dropdown-item" href="#!" data-dz-remove="data-dz-remove">Remove File</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 ps-lg-2">
+            <div class="sticky-sidebar">
+              <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                  <h6 class="mb-0">Genres <span class="required-alert">*</span></h6>
+                </div>
+                <div class="card-body">
+                  <label class="form-label" for="project-tag">Select game genres <span class="required-alert">*</span></label>
+                  <select class="form-select js-choice" id="project-tag" name="project-tag" multiple="multiple" size="1" name="organizerMultiple" data-options='{"removeItemButton":true,"placeholder":true}' required>
+                    <option value="">Select genres...</option>
+                    <option>Action</option>
+                    <option>Adventure</option>
+                    <option>RPG (Role-Playing Game)</option>
+                    <option>Strategy</option>
+                    <option>Puzzle</option>
+                    <option>Simulation</option>
+                    <option>Sports</option>
+                    <option>Racing</option>
+                    <option>Horror</option>
+                    <option>Fighting</option>
+                    <option>Platformer</option>
+                    <option>Indie</option>
+                  </select>
+                </div>        
+              </div>        
+              <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                  <h6 class="mb-0">Pricing</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row gx-2">
+                    <div class="col-6 mb-3">
+                      <label class="form-label" for="project-totalbudget">Total Budget <span class="required-alert">*</span><span data-bs-toggle="tooltip" data-bs-placement="top" title="The estimated total cost of the project"><span class="fas fa-question-circle text-primary fs-10 ms-1"></span></span></label>
+                      <input class="form-control" id="project-totalbudget" name="project-totalbudget" type="number">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="project-budgetcurrency">Currency</label>
+                      <select class="form-select" id="project-budgetcurrency" name="project-budgetcurrency">
+                        <option value="usdt">USDT</option>
+                        <option value="btc">BTC</option>
+                        <option value="ether">ETHER</option>
+                        <option value="bnb">BNB</option>
+                      </select>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <label class="form-label" for="project-fundingpercentage">Funding Required (%) <span class="required-alert">*</span><span data-bs-toggle="tooltip" data-bs-placement="top" title="The amount of money needed to be raised from investors"><span class="fas fa-question-circle text-primary fs-10 ms-1"></span></span></label>
+                      <input class="form-control" id="project-fundingpercentage" name="project-fundingpercentage" type="number" max="100">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="project-mininvestment">Min. Invest. Per Investor (>=5 %) <span class="required-alert">*</span></label>
+                      <input class="form-control" id="project-mininvestment" name="project-mininvestment" type="number" min="5" max="100">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3">
+                <div class="card-header bg-body-tertiary">
+                  <h6 class="mb-0">Schedule</h6>
+                </div>
+                <div class="card-body">
+                  <div class="col-12 mb-3">
+                    <label class="form-label" for="project-timeline">Estimated Timeline</label>
+                    <input class="form-control datetimepicker" id="project-timeline" name="project-timeline" type="text" placeholder="dd/mm/yy to dd/mm/yy" data-options='{"mode":"range","dateFormat":"d/m/y","disableMobile":true,"position":"below","predefinedRanges":["today",{"last_7_days":"Last week"},"last_month",{"label":"My Days","range":["2023-10-10","2024-05-07T16:37:15.372Z"]}]}' />
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-md">
+                <h5 class="mb-2 mb-md-0">You're almost done!</h5>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary" type="submit">Add Game </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>  
+  
+<script type="module">
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('main-form');
+    var myDropzone1 = Dropzone.forElement("#dropzoneMultipleFileUpload1");
+
+    var files = {
+      "ImagesOfPlace": [],
+    };
+
+    myDropzone1.options.url = "/uploadIMG"
+    myDropzone1.options.paramName = "file",
+    myDropzone1.options.autoProcessQueue = true,
+    myDropzone1.options.acceptedFiles = 'image/*'
+
+    myDropzone1.on("success", function (file, response) {
+      files.ImagesOfPlace.push(response[0].path)
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var formData = new FormData(form);
+
+      files.ImagesOfPlace.forEach((Image) => {
+        formData.append('ImagesOfPlace', Image);
+      })
+
+      fetch('/addProject', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              console.log(data.message);
+              window.location.href = `/project/${data.projectId}`;
+          } else {
+              throw new Error(data.message);
+          }
+      })
+      .catch(error => console.error('Erro ao enviar formulário:', error));
+    });
+  });
+
+  $('#project-budgetcurrency').change(function() {
+      var selectedCurrency = $(this).val();
+      $('#currency-type').val(selectedCurrency);
+  });
+</script>
+
+<%- include('../partials/footer.html') %>

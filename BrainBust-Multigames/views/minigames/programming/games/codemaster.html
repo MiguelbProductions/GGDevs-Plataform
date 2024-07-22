@@ -1,0 +1,39 @@
+<%- include('../../../partials/header.html') %>
+
+<link rel="stylesheet" href="/public/css/problemslist.css">
+
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5"></div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="mb-5 text-center">Programming Challenges</h2>
+    <div class="row mb-2">
+        <div class="col"><strong>Title</strong></div>
+        <div class="col"><strong>Tags</strong></div>
+        <div class="col-auto"><strong>Difficulty</strong></div>
+    </div>
+    <% problems.forEach(function(problem){ %>
+        <div class="row problem-container <% if(solvedProblems.includes(problem.ProblemNum)) { %>alert alert-success<% } %>" onclick="window.location.href='/minigames/programming/codemaster/problem/<%= problem.ProblemNum %>';">
+            <div class="col">
+                <div >
+                    <h5><%= problem.ProblemNum %>. <%= problem.Title %></h5>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tag-list">
+                    <% problem.Tags.forEach(function(tag){ %>
+                        <span class="tag"><%= tag %></span>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="difficulty <%= 'difficulty-' + problem.Difficulty.toLowerCase() %>">
+                    <small class="text-muted"><%= problem.Difficulty %></small>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<%- include('../../../partials/footer.html') %>
